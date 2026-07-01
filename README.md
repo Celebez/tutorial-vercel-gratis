@@ -2,6 +2,8 @@
 
 > **Cara deploy website statis / dinamis GRATIS di Vercel — 3 metode berbeda**
 
+![Proses deploy ke Vercel — GIF animasi](https://raw.githubusercontent.com/Celebez/tutorial-vercel-gratis/main/assets/deploy-demo.gif)
+
 ---
 
 ## 📋 Daftar Isi
