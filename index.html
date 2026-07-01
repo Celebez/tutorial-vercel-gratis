@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutorial Vercel — Gratis Website</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .card {
+            background: #111;
+            border: 1px solid #333;
+            border-radius: 1rem;
+            padding: 3rem;
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 { font-size: 2.8rem; margin-bottom: 0.5rem; }
+        h1 span { background: linear-gradient(90deg, #8755ff, #00d4ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .subtitle { color: #666; font-size: 1.1rem; margin-bottom: 1.5rem; }
+        .badge { display: inline-block; background: #1a1a2e; border: 1px solid #8755ff; padding: 0.5rem 1.5rem; border-radius: 2rem; margin: 1rem 0; font-size: 0.9rem; }
+        .features { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0; text-align: left; }
+        .feature { background: #1a1a1a; border-radius: 0.5rem; padding: 0.8rem; font-size: 0.9rem; }
+        .feature span { color: #00d4ff; }
+        .steps { text-align: left; margin: 2rem 0; }
+        .steps li { margin: 0.5rem 0; padding: 0.3rem 0; }
+        .code { background: #1a1a1a; padding: 1rem; border-radius: 0.5rem; font-family: monospace; margin: 1rem 0; text-align: left; border-left: 3px solid #8755ff; }
+        .btn { display: inline-block; background: linear-gradient(90deg, #8755ff, #00d4ff); color: #fff; padding: 0.8rem 2rem; border-radius: 2rem; text-decoration: none; margin-top: 1.5rem; }
+        .footer { color: #444; font-size: 0.8rem; margin-top: 2rem; }
+        @media (max-width: 600px) { .features { grid-template-columns: 1fr; } .card { padding: 1.5rem; } }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>🚀 <span>Vercel Gratis</span></h1>
+        <p class="subtitle">Deploy website statis — tanpa bayar sepeserpun</p>
+        <span class="badge">✅ Deployed via Vercel</span>
+        <div class="features">
+            <div class="feature"><span>⚡</span> Deploy dalam 5 detik</div>
+            <div class="feature"><span>🌐</span> CDN Global — 200+ edge</div>
+            <div class="feature"><span>💰</span> 100% Gratis — 100GB/bln</div>
+            <div class="feature"><span>🔗</span> Custom domain support</div>
+        </div>
+        <div class="steps">
+            <h3>📋 Cara deploy (3 metode):</h3>
+            <ol>
+                <li><strong>Hermes Agent</strong> — deploy dari sini langsung</li>
+                <li><strong>GitHub</strong> — push → auto build</li>
+                <li><strong>Vercel CLI</strong> — upload langsung dari terminal</li>
+            </ol>
+        </div>
+        <div class="code">
+            <code>$ npm install -g vercel<br>$ vercel login<br>$ vercel --prod<br>✅ https://site.vercel.app</code>
+        </div>
+        <a class="btn" href="https://vercel.com">🌐 Buka Vercel</a>
+    </div>
+    <p class="footer">Tutorial oleh <strong>Celebez</strong> — <a href="https://github.com/Celebez">Celebez</a></p>
+</body>
+</html>
