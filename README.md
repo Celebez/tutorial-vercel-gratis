@@ -1,6 +1,6 @@
 # 🚀 Tutorial Website Gratis di Vercel
 
-> **Cara deploy website statis / dinamis GRATIS di Vercel — 3 metode berbeda**
+> **Panduan lengkap — deploy website statis GRATIS ke Vercel dalam 3 metode**
 
 ![Proses deploy ke Vercel — GIF animasi](https://raw.githubusercontent.com/Celebez/tutorial-vercel-gratis/main/assets/deploy-demo.gif)
 
@@ -9,153 +9,187 @@
 ## 📋 Daftar Isi
 
 - [Apa itu Vercel?](#apa-itu-vercel)
-- [Prasyarat](#prasyarat)
-- [Cara Deploy](#cara-deploy)
+- [Prasyarat — apa yang harus disiapkan](#prasyarat--apa-yang-harus-disiapkan)
+- [Langkah 1: Buat Akun Vercel](#langkah-1-buat-akun-vercel)
+- [Metode Deploy](#metode-deploy)
   - [Metode 1: Via Hermes Agent (Terminal)](#metode-1-deploy-via-hermes-agent-terminal)
   - [Metode 2: Via GitHub](#metode-2-deploy-via-github)
   - [Metode 3: Langsung via Vercel CLI](#metode-3-deploy-langsung-via-vercel-cli)
 - [Contoh Project](#contoh-project)
+- [Cara Install Vercel CLI](#cara-install-vercel-cli)
 - [Tips & Trik](#tips--trik)
+- [FAQ](#faq)
 
 ---
 
 ## Apa itu Vercel?
 
-**Vercel** adalah platform cloud modern untuk deploy website statis, serverless functions, dan aplikasi frontend secara gratis.
+**Vercel** adalah platform cloud buat:
 
-| Fitur | Keterangan |
-|-------|------------|
-| 💰 Harga | **Gratis** — 100GB bandwidth/bulan |
-| 🚀 Kecepatan | Global CDN (Edge Network) |
-| 🌐 Domain | `*.vercel.app` gratis + custom domain |
-| 🧩 Stack | Next.js, React, Vue, HTML/CSS/JS (statis) |
-| ⚡ Serverless | Functions di `api/` folder |
+- 🏗 **Deploy website statis** — HTML, CSS, JS, gambar
+- ⚡ **Serverless functions** — API backend tanpa kelola server
+- 🌐 **Global CDN** — 200+ edge nodes di seluruh dunia
+- 🔗 **Auto HTTPS** — gratis, built-in
 
-> **Kenapa pilih Vercel?** Karena gratisan, cepet, support GitHub + CLI.
+| Fitur | Detail |
+|-------|--------|
+| Harga | **Gratis** — 100GB bandwidth/bln |
+| Build | 6000 menit build/bulan |
+| Domain | `*.vercel.app` + custom domain |
+| Storage | 1GB (statis) |
+| Team | Bisa kolaborasi unlimited |
 
 ---
 
-## Prasyarat
+## Prasyarat — apa yang harus disiapkan
 
-| No | Item | Keterangan |
+| No | Item | Cara dapetin |
 |----|------|------------|
-| 1 | Akun Vercel | Daftar di [vercel.com](https://vercel.com) — email atau GitHub |
-| 2 | Node.js | Opsional — `node -v` untuk CLI |
-| 3 | Git | Opsional — kalau mau via GitHub |
-| 4 | Hermes Agent | Opsional — deploy langsung dari sini |
+| 1 | ✅ **Akun Vercel** | Daftar di [vercel.com](https://vercel.com) — pake email atau GitHub |
+| 2 | ✅ **Node.js** | `sudo apt install nodejs` atau [nodejs.org](https://nodejs.org) |
+| 3 | ⬜ **Git** | Opsional — cuma perlu kalau mau metode GitHub |
+| 4 | ⬜ **Hermes Agent** | Opsional — punya akses terminal aja udah cukup |
+
+> **Minimal:** cukup punya laptop/HP + akun Vercel (email). Nggak perlu bayar.
 
 ---
 
-## Cara Deploy
+## Langkah 1: Buat Akun Vercel
 
-Ada **3 metode** yang bisa dipake. Pilih sesuai nyaman:
+1. Buka [vercel.com](https://vercel.com)
+2. Klik **Sign Up**
+3. Pilih:
+   - **Continue with GitHub** — paling cepet
+   - **Continue with Email** — pake email biasa
+4. Verifikasi email
+5. Selesai — dashboard kosong siap deploy
+
+> ⚠️ **Tips:** Pake GitHub lebih enak karena langsung connect — pas import repo tinggal pilih.
+
+---
+
+## Metode Deploy
+
+Ada **3 metode**. Pilih yang paling cocok:
 
 ### Metode 1: Deploy via Hermes Agent (Terminal)
 
-> Deploy **langsung dari terminal** — nggak perlu buka browser.
-
-**Step 1:** Login Vercel dari CLI
+> **Langsung dari terminal** — nggak perlu buka browser Vercel.
 
 ```bash
+# 1. Install Vercel CLI
 npm install -g vercel
+
+# 2. Login
 vercel login
-```
+# → Buka link di browser → Authorize
 
-**Step 2:** Arahkan ke folder project
+# 3. Masuk ke folder project
+cd ~/my-project
 
-```bash
-cd /path/to/your-project
-```
-
-**Step 3:** Deploy langsung
-
-```bash
+# 4. Deploy
 vercel --prod
 ```
 
-**Step 4:** Selesai!
+Output:
+```
+🔗 Linked to vercel.com/user/my-project
+✅ Production: https://my-project.vercel.app
+```
 
-```
-✅ Production — https://project-ku.vercel.app
-```
+**Keuntungan:**
+- Cepet — 5 detik
+- Bisa dari SSH/VPS
+- Integrasi sama Hermes Agent
+
+**Cocok buat:** Developer yang suka pake terminal langsung.
 
 ---
 
 ### Metode 2: Deploy via GitHub
 
-> Push ke GitHub → Vercel auto-build.
+> **Push ke GitHub → auto deploy.** Ini metode paling populer.
 
-**Step 1:** Buat repo baru
+**Step 1 — Buat repo lokal:**
 
 ```bash
-mkdir my-awesome-site && cd my-awesome-site
+mkdir website-ku
+cd website-ku
 git init
-echo "<h1>Halo Dunia!</h1>" > index.html
+echo "<h1>Halo Dunia</h1>" > index.html
 ```
 
-**Step 2:** Push ke GitHub
+**Step 2 — Push ke GitHub:**
 
 ```bash
-git add . && git commit -m "first commit"
-git remote add origin https://github.com/USER/REPO.git
+git add .
+git commit -m "first deploy"
+git remote add origin https://github.com/username/repo.git
 git push -u origin main
 ```
 
-**Step 3:** Import ke Vercel
+**Step 3 — Import di Vercel:**
 
 1. Buka [vercel.com/new](https://vercel.com/new)
-2. Pilih **Import Git Repository**
-3. Cari repo kamu
-4. Klik **Deploy**
+2. Pilih tab **Import Git Repository**
+3. Pilih repo → **Deploy**
 
-**Step 4:** Selesai — setiap push ke `main` auto-deploy.
+**Step 4 — Selesai:**
+
+```
+✅ Production: https://repo-name.vercel.app
+```
+
+Setiap kali push `git push`, Vercel build ulang otomatis.
 
 ---
 
 ### Metode 3: Deploy Langsung via Vercel CLI
 
-> Upload langsung — tanpa GitHub.
+> **Upload folder lokal** — tanpa GitHub, tanpa commit.
 
 ```bash
 npm install -g vercel
 vercel login
-vercel        # interactive
-vercel --prod # production
+vercel --prod
 ```
 
-Output:
-```
-Vercel CLI 28.16.0
-? Set up and deploy "./your-project"? [Y/n] Y
-? Which scope do you want to deploy? user
-? Link to existing project? No
-? What's your project's name? my-awesome-site
-  🔗  Linked to vercel.com/user/my-awesome-site
-  🚀  Deployed to production (https://my-awesome-site.vercel.app) [1s]
+Vercel akan:
+1. Deteksi framework
+2. Upload file
+3. Build
+4. Deploy ke CDN
+
+```bash
+# Contoh interactive
+vercel
+? Set up and deploy "./project"? [Y/n] Y
+? What's your project's name? belajar-vercel
+? Deploy to production? Yes
+✅ https://belajar-vercel.vercel.app
 ```
 
 ---
 
 ## Contoh Project
 
-### `index.html`
+### `index.html` — landing page sederhana
 
 ```html
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Website Gratis - Vercel</title>
+    <title>Vercel Gratis</title>
 </head>
 <body>
     <h1>🚀 Website Gratis di Vercel</h1>
     <p>Deploy dalam 5 detik — tanpa bayar</p>
-    <span>✅ Deployed via Vercel</span>
 </body>
 </html>
 ```
 
-### `vercel.json`
+### `vercel.json` — config routing (SPA)
 
 ```json
 {
@@ -165,19 +199,79 @@ Vercel CLI 28.16.0
 }
 ```
 
+### `api/hello.js` — serverless function
+
+```js
+export default function handler(req, res) {
+  res.json({ message: "Serverless jalan!" });
+}
+```
+
+---
+
+## Cara Install Vercel CLI
+
+```bash
+# Via npm (recommended)
+npm install -g vercel
+
+# Via yarn
+yarn global add vercel
+
+# Via pnpm
+pnpm add -g vercel
+
+# Via brew (macOS)
+brew install vercel-cli
+```
+
+Cek versi:
+
+```bash
+vercel --version
+# → v28.16.0
+```
+
 ---
 
 ## Tips & Trik
 
-- **Custom Domain:** `vercel domains add yourdomain.com` → set A record ke `76.76.21.21`
-- **Environment Variables:** `vercel env add VAR_NAME`
-- **Serverless Functions:** file di `api/hello.js` — auto deploy
+| # | Tips | Command |
+|---|------|---------|
+| 1 | **Custom domain gratis** | `vercel domains add domainkamu.com` → A record `76.76.21.21` |
+| 2 | **Env variables** | `vercel env add SECRET_KEY` — production / preview |
+| 3 | **Preview build** | `vercel` (tanpa `--prod`) — URL preview sementara |
+| 4 | **Auto detect framework** | Vercel detect otomatis — Next, Nuxt, Svelte, dll |
+| 5 | **Analytics** | Bisa aktif dari dashboard — gratis tier |
+| 6 | **Rollback** | Dashboard → Deployments → pilih versi lama |
 
-| Metode | Cocok buat |
-|--------|-----------|
-| Hermes Agent | Dev langsung |
-| GitHub | Production / tim |
-| CLI | Testing |
+---
+
+## FAQ
+
+**Q: Vercel beneran gratis?**
+A: Iya. 100GB bandwidth + 6000 build menit/bulan. Cukup buat project kecil-sedang.
+
+**Q: Bisa pake framework apa?**
+A: Next.js, Nuxt, Svelte, Astro, Gatsby, atau HTML/CSS/JS polos.
+
+**Q: Butuh kartu kredit?**
+A: Nggak. Pake GitHub atau email biasa.
+
+**Q: Domain `.vercel.app` bisa custom?**
+A: Bisa — tambahin di dashboard dan set DNS.
+
+**Q: Kalau lewat batas gratis?**
+A: Naik ke Pro ($20/bln) atau tetap di free — upgrade kapan aja.
+
+---
+
+## 🔗 Link Penting
+
+- [Vercel Dashboard](https://vercel.com/dashboard)
+- [Vercel Docs](https://vercel.com/docs)
+- [Vercel CLI Reference](https://vercel.com/docs/cli)
+- [GitHub Integration](https://vercel.com/docs/git)
 
 ---
 
